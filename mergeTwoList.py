@@ -1,24 +1,30 @@
 class ListNode:
     def __init__(self, val=0, next=None):
+        """
+        :type val: int
+        :type next: ListNode
+        """
         self.val = val
         self.next = next
 
-def mergeTwoLists(list1: ListNode, list2 : ListNode):
-    if list1 is None and list2 is None:
-        return None
-    elif list1 is None:
-        return list2
-    elif list2 is None:
-        return list1
-    listResult = ListNode()
-    while list1.next is not None and list2.next is not None:
-        if list1.val > list2.val:
-            print(list1.val)
+def mergeTwoLists(list1 ,list2):
+    """
+    :type l1: ListNode
+    :type l2: ListNode
+    :rtype: ListNode
+    """
+    result = ListNode()
+    tail = result
+    while list1 and list2:
+        if list1.val < list2.val:
+            tail.next = list1
             list1 = list1.next
         else:
-            print(list2.val)
+            tail.next = list2
             list2 = list2.next
-    return listResult
+        tail = tail.next
+
+    return result.next
 
 list1 = ListNode(1,ListNode(2,ListNode(4)))
 list2 = ListNode(1,ListNode(3,ListNode(4)))
@@ -26,6 +32,6 @@ list2 = ListNode(1,ListNode(3,ListNode(4)))
 res = mergeTwoLists(list1,list2)
 
 while res.next is not None:
-    print(res.val)
+    print(res.val,end=" ")
     res = res.next
 print(res.val)

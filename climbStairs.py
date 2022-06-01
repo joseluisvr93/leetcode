@@ -1,9 +1,11 @@
+
 def climbStairs(n):
-    if n == 1:
-        return 1
-    if n == 2:
-        return 2
-    return climbStairs(n-1) + climbStairs(n-2)
+    a, b = 1, 1
+    for i in range(n-1):
+        temp = a
+        a = a + b
+        b = temp
+    return a
 
 n = 38
 print(climbStairs(n))
